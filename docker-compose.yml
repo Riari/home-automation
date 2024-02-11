@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: caddy:2.7.6
+    container_name: lifx-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ${PWD-.}/docker/Caddyfile:/etc/caddy/Caddyfile
+      - ${PWD-.}/src:/src
+
+  php-fpm:
+    build:
+      context: ${PWD-.}
+      dockerfile: docker/php-fpm/Dockerfile
+    container_name: lifx-php-fpm
+    working_dir: /src
+    volumes:
+      - ${PWD-.}/src:/src
