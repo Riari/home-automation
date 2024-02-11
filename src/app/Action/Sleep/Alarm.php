@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Action\IAction;
 use App\Config;
 
-class Wake implements IAction
+class Alarm implements IAction
 {
     private HttpClientInterface $client;
 
@@ -24,8 +24,14 @@ class Wake implements IAction
     // TODO: Replace this when middleware support is added
     private function isAuthorized(): bool
     {
-        return isset($_SERVER['PHP_AUTH_USER']) && $_SERVER['PHP_AUTH_USER'] == Config::get('app.auth.basic_user')
-            && isset($_SERVER['PHP_AUTH_PW']) && $_SERVER['PHP_AUTH_PW'] == Config::get('app.auth.basic_pass');
+        if (isset($_SERVER['PHP_SELF']) && strpos($_SERVER['PHP_SELF'], '@') !== false) {
+            list($credentials, $url) = explode('@', $_SERVER['PHP_SELF'], 2);
+            list($username, $password) = explode(':', $credentials);
+            
+            return $username == Config::get('app.auth.basic_user') && $password == Config::get('app.auth.basic_pass');
+        }
+
+        return false;
     }
 
     public function execute(array $params): JsonResponse
