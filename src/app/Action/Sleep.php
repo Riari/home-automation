@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action\Sleep;
+namespace App\Action;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpClient\HttpClient;
