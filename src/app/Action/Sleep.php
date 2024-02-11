@@ -23,14 +23,21 @@ class Sleep implements IAction
     // TODO: Replace this when middleware support is added
     private function isAuthorized(): bool
     {
-        if (isset($_SERVER['PHP_SELF']) && strpos($_SERVER['PHP_SELF'], '@') !== false) {
+        $username = "";
+        $password = "";
+        
+        if (isset($_SERVER['PHP_SELF']) && strpos($_SERVER['PHP_SELF'], '@') !== false)
+        {
             list($credentials, $url) = explode('@', $_SERVER['PHP_SELF'], 2);
-            list($username, $password) = explode(':', $credentials);
-            
-            return $username == Config::get('app.auth.basic_user') && $password == Config::get('app.auth.basic_pass');
+            list($username, $password) = explode(':', $credentials);   
+        }
+        else if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
+        {
+            $username = $_SERVER['PHP_AUTH_USER'];
+            $password = $_SERVER['PHP_AUTH_PW'];
         }
 
-        return false;
+        return $username == Config::get('app.auth.basic_user') && $password == Config::get('app.auth.basic_pass');
     }
 
     public function execute(array $params): JsonResponse
