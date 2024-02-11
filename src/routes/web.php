@@ -1,5 +1,5 @@
 <?php
 
-use App\Action\Sleep\Alarm;
+use App\Action\Sleep;
 
-$r->addRoute('POST', '/events/sleep/alarm', [Alarm::class, 'execute']);
+$r->addRoute('POST', '/events/sleep', [Sleep::class, 'execute']);

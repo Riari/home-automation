@@ -7,10 +7,9 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Action\IAction;
 use App\Config;
 
-class Alarm implements IAction
+class Sleep implements IAction
 {
     private HttpClientInterface $client;
 
