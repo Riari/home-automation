@@ -22,7 +22,7 @@ class App
     {
         $this->initConfig($pathToApp);
         $this->initRouter($pathToApp);
-        // $this->initDatabase();
+        $this->initDatabase();
     }
 
     private function initConfig(string $pathToApp)

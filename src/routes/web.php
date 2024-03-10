@@ -1,6 +1,19 @@
 <?php
 
 use App\Phase\Authenticate;
-use App\Phase\HandleSleepEvent;
+use App\Phase\BasicAuthenticate;
+use App\Phase\Admin\CreateUser;
+use App\Phase\Admin\HandleLoginSubmit;
+use App\Phase\Admin\MigrateDatabase;
+use App\Phase\Admin\ShowDashboard;
+use App\Phase\Admin\ShowLoginForm;
+use App\Phase\Sleep\HandleSleepEvent;
 
-$r->addRoute('POST', '/events/sleep', [Authenticate::class, HandleSleepEvent::class]);
+$r->addRoute('POST', '/admin/login', [HandleLoginSubmit::class]);
+$r->addRoute('GET', '/admin/login', [ShowLoginForm::class]);
+$r->addRoute('GET', '/admin/dashboard', [Authenticate::class, ShowDashboard::class]);
+
+$r->addRoute('POST', '/admin/user/create', [BasicAuthenticate::class, CreateUser::class]);
+$r->addRoute('POST', '/admin/migratedb', [BasicAuthenticate::class, MigrateDatabase::class]);
+
+$r->addRoute('POST', '/events/sleep', [BasicAuthenticate::class, HandleSleepEvent::class]);

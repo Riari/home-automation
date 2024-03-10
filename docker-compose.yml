@@ -13,6 +13,17 @@ services:
       - ${PWD-.}/docker/Caddyfile:/etc/caddy/Caddyfile
       - ${PWD-.}/src:/src
 
+  mysql:
+    image: mysql:5.7
+    container_name: home-auto-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=homeauto
+      - MYSQL_USER=homeauto
+      - MYSQL_PASSWORD=secret
+    ports:
+      - "3306:3306"
+
   php-fpm:
     build:
       context: ${PWD-.}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Phase;
+namespace App\Phase\Sleep;
 
 use Adbar\Dot;
 use Closure;
