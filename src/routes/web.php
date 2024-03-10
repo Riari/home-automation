@@ -3,6 +3,7 @@
 use App\Phase\Authenticate;
 use App\Phase\BasicAuthenticate;
 use App\Phase\Admin\CreateUser;
+use App\Phase\Admin\GetHueDeviceList;
 use App\Phase\Admin\HandleHueCallback;
 use App\Phase\Admin\HandleLoginSubmit;
 use App\Phase\Admin\MigrateDatabase;
@@ -14,6 +15,7 @@ $r->addRoute('POST', '/admin/login', [HandleLoginSubmit::class]);
 $r->addRoute('GET', '/admin/login', [ShowLoginForm::class]);
 $r->addRoute('GET', '/admin/dashboard', [Authenticate::class, ShowDashboard::class]);
 $r->addRoute('GET', '/admin/hue/callback', [Authenticate::class, HandleHueCallback::class]);
+$r->addRoute('GET', '/admin/hue/devices', [Authenticate::class, GetHueDeviceList::class]);
 
 $r->addRoute('POST', '/admin/user/create', [BasicAuthenticate::class, CreateUser::class]);
 $r->addRoute('POST', '/admin/migratedb', [BasicAuthenticate::class, MigrateDatabase::class]);
