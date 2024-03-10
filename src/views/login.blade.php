@@ -8,6 +8,9 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Sign in
                     </h1>
+
+                    @include('partials.messages')
+
                     <form class="space-y-4 md:space-y-6" action="#">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>

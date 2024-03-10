@@ -4,6 +4,7 @@ namespace App\Phase\Admin;
 
 use Adbar\Dot;
 use App\Model\User;
+use App\Util\Session as SessionUtil;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,6 +26,8 @@ class HandleLoginSubmit extends Phase
 
         session_start();
         $_SESSION['user'] = $user;
+        
+        SessionUtil::setFlash("Logged in");
 
         return new RedirectResponse('/admin/dashboard');
     }
