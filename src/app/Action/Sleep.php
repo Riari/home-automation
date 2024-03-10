@@ -66,7 +66,7 @@ class Sleep implements IAction
                 [
                     'json' => [
                         'power' => 'on',
-                        'duration' => Config::get('app.lifx.wake_duration'),
+                        'duration' => Config::get('app.lights.wake_duration'),
                         'fast' => false
                     ]
                 ]

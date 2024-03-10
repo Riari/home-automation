@@ -7,6 +7,12 @@ return [
     ],
     'lifx' => [
         'token' => $_ENV['LIFX_API_TOKEN'],
-        'wake_duration' => $_ENV['LIFX_WAKE_DURATION'],
+    ],
+    'hue' => [
+        'client_id' => $_ENV['HUE_CLIENT_ID'],
+        'client_secret' => $_ENV['HUE_CLIENT_SECRET'],
+    ],
+    'lights' => [
+        'wake_duration' => $_ENV['LIGHTS_WAKE_DURATION'],
     ]
 ];
