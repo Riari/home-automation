@@ -3,6 +3,7 @@
 namespace App\Phase\Admin;
 
 use Adbar\Dot;
+use App\Util\Session as SessionUtil;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Phase\Http\Response\ViewResponse;
@@ -20,6 +21,8 @@ class ShowDashboard extends Phase
         return new ViewResponse('dashboard', [
             'hueClientId' => $clientId,
             'hueState' => $state,
+            'flashSuccess' => SessionUtil::getFlash('success'),
+            'flashError' => SessionUtil::getFlash('error'),
         ]);
     }
 }

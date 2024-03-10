@@ -16,7 +16,10 @@ class MigrateDatabase extends Phase
     {
         Manager::schema()->create('app_tokens', function ($table) {
             $table->string('app')->primary();
-            $table->text('token');
+            $table->text('access_token');
+            $table->text('refresh_token');
+            $table->text('username');
+            $table->timestamp('expires_at');
             $table->timestamps();
         });
 

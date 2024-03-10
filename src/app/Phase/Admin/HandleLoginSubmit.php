@@ -4,10 +4,8 @@ namespace App\Phase\Admin;
 
 use Adbar\Dot;
 use App\Model\User;
-use App\Model\Session as SessionModel;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
-use Phase\Http\Response\ViewResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;

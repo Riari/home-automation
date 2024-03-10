@@ -9,6 +9,7 @@ return [
         'token' => $_ENV['LIFX_API_TOKEN'],
     ],
     'hue' => [
+        'app_name' => $_ENV['HUE_APP_NAME'],
         'client_id' => $_ENV['HUE_CLIENT_ID'],
         'client_secret' => $_ENV['HUE_CLIENT_SECRET'],
     ],
