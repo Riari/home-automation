@@ -1,5 +1,6 @@
 <?php
 
-use App\Action\Sleep;
+use App\Phase\Authenticate;
+use App\Phase\HandleSleepEvent;
 
-$r->addRoute('POST', '/events/sleep', [Sleep::class, 'execute']);
+$r->addRoute('POST', '/events/sleep', [Authenticate::class, HandleSleepEvent::class]);

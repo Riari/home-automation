@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Phase\Config;
 
 use Adbar\Dot;
 
@@ -25,7 +25,7 @@ class Config
         // Dot implements dot notation, so this is just a lazy way to do the rest
         $config = include $filepath;
         $dot = new Dot($config);
-        $keyWithoutFilename = str_replace($filename . '.', '', $key);
+        $keyWithoutFilename = strtok('');
 
         if (! $dot->has($keyWithoutFilename)) return NULL;
 

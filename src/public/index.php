@@ -2,8 +2,7 @@
 
 require '../vendor/autoload.php';
 
-use App\App;
-use App\Config;
+use Phase\App\App;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();

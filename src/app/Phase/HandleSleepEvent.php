@@ -1,56 +1,35 @@
 <?php
 
-namespace App\Action;
+namespace App\Phase;
 
+use Adbar\Dot;
+use Closure;
+use Phase\Config\Config;
+use Phase\Http\Phase\Phase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Config;
-
-class Sleep implements IAction
+class HandleSleepEvent extends Phase
 {
     private HttpClientInterface $client;
 
-    public function __construct()
+    public function __construct(Closure $next, Request $request, array $params)
     {
+        parent::__construct($next, $request, $params);
+
         $this->client = HttpClient::createForBaseUri('https://api.lifx.com/v1/', [
             'auth_bearer' => Config::Get('app.lifx.token')
         ]);
     }
 
-    // TODO: Replace this when middleware support is added
-    private function isAuthorized(): bool
+    public function handle(Dot $state): Response
     {
-        $username = "";
-        $password = "";
-        
-        if (isset($_SERVER['PHP_SELF']) && strpos($_SERVER['PHP_SELF'], '@') !== false)
-        {
-            list($credentials, $url) = explode('@', $_SERVER['PHP_SELF'], 2);
-            list($username, $password) = explode(':', $credentials);   
-        }
-        else if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
-        {
-            $username = $_SERVER['PHP_AUTH_USER'];
-            $password = $_SERVER['PHP_AUTH_PW'];
-        }
+        $payload = json_decode($this->request->getContent(), true);
 
-        return $username == Config::get('app.auth.basic_user') && $password == Config::get('app.auth.basic_pass');
-    }
-
-    public function execute(array $params): JsonResponse
-    {
-        if (!$this->isAuthorized())
-        {
-            return new JsonResponse(
-                ['error' => 'Unauthorized'],
-                Response::HTTP_UNAUTHORIZED
-            );
-        }
-
-        if ($params['event'] != 'alarm_alert_start')
+        if ($payload['event'] != 'alarm_alert_start')
         {
             return new JsonResponse(
                 ['error' => 'Invalid event'],

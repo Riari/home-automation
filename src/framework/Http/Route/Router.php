@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Phase\Http\Route;
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
