@@ -1,2 +1,2 @@
-# lifx-automation
-Automation for my LIFX lights.
+# home-automation
+Automation for my home devices.

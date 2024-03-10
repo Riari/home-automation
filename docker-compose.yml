@@ -3,7 +3,7 @@ version: "3.8"
 services:
   caddy:
     image: caddy:2.7.6
-    container_name: lifx-caddy
+    container_name: home-auto-caddy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -17,7 +17,7 @@ services:
     build:
       context: ${PWD-.}
       dockerfile: docker/php-fpm/Dockerfile
-    container_name: lifx-php-fpm
+    container_name: home-auto-php-fpm
     working_dir: /src
     volumes:
       - ${PWD-.}/src:/src
