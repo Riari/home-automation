@@ -5,7 +5,6 @@ namespace App\Phase\Admin;
 use Adbar\Dot;
 use App\Model\User;
 use App\Util\Session as SessionUtil;
-use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

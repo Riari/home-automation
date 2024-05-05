@@ -4,3 +4,6 @@
 @if (isset($flashError) && !empty($flashError))
     @include('partials.message-error', ['message' => $flashError])
 @endif
+@if (isset($flashWarning) && !empty($flashWarning))
+    @include('partials.message-error', ['message' => $flashWarning])
+@endif

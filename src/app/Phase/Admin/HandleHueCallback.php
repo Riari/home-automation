@@ -8,7 +8,6 @@ use App\Util\Session as SessionUtil;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpClient\HttpOptions;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -55,8 +54,6 @@ class HandleHueCallback extends Phase
                 'json' => ['linkbutton' => true]
             ]);
 
-            $test = $response->toArray();
-
             if ($response->getStatusCode() != Response::HTTP_OK)
             {
                 SessionUtil::setFlash("Hue token update failed", 'error');
@@ -78,7 +75,7 @@ class HandleHueCallback extends Phase
             $appTokenData['username'] = $payload[0]['success']['username'];
         }
 
-        $appToken = AppToken::updateOrCreate(
+        AppToken::updateOrCreate(
             ['app' => 'hue'],
             $appTokenData
         );
