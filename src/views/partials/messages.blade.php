@@ -5,5 +5,5 @@
     @include('partials.message-error', ['message' => $flashError])
 @endif
 @if (isset($flashWarning) && !empty($flashWarning))
-    @include('partials.message-error', ['message' => $flashWarning])
+    @include('partials.message-warning', ['message' => $flashWarning])
 @endif
