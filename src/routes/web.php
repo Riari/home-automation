@@ -13,7 +13,7 @@ use App\Phase\Admin\ShowDashboard;
 use App\Phase\Admin\ShowLoginForm;
 use App\Phase\Sleep\HandleSleepEvent;
 
-$r->addRoute('GET', '/admin', [RedirectToDashboard::class]);
+$r->addRoute('GET', '/admin[/]', [RedirectToDashboard::class]);
 $r->addRoute('POST', '/admin/login', [HandleLoginSubmit::class]);
 $r->addRoute('GET', '/admin/login', [ShowLoginForm::class]);
 $r->addRoute('GET', '/admin/logout', [HandleLogout::class]);
