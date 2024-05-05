@@ -3,11 +3,9 @@
 namespace App\Phase\Admin;
 
 use Adbar\Dot;
-use App\Util\Session as SessionUtil;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Phase\Http\Response\ViewResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class ShowDashboard extends Phase
@@ -21,8 +19,6 @@ class ShowDashboard extends Phase
         return new ViewResponse('dashboard', [
             'hueClientId' => $clientId,
             'hueState' => $state,
-            'flashSuccess' => SessionUtil::getFlash('success'),
-            'flashError' => SessionUtil::getFlash('error'),
         ]);
     }
 }

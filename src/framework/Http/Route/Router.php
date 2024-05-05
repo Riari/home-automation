@@ -6,7 +6,6 @@ use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Router is a simple wrapper around FastRoute. It's not very sophisticated, but it will do for now!

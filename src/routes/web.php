@@ -8,10 +8,12 @@ use App\Phase\Admin\HandleHueCallback;
 use App\Phase\Admin\HandleLoginSubmit;
 use App\Phase\Admin\HandleLogout;
 use App\Phase\Admin\MigrateDatabase;
+use App\Phase\Admin\RedirectToDashboard;
 use App\Phase\Admin\ShowDashboard;
 use App\Phase\Admin\ShowLoginForm;
 use App\Phase\Sleep\HandleSleepEvent;
 
+$r->addRoute('GET', '/admin', [RedirectToDashboard::class]);
 $r->addRoute('POST', '/admin/login', [HandleLoginSubmit::class]);
 $r->addRoute('GET', '/admin/login', [ShowLoginForm::class]);
 $r->addRoute('GET', '/admin/logout', [HandleLogout::class]);
