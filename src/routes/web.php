@@ -26,6 +26,6 @@ $r->addRoute('GET', '/admin/hue/callback', [Authenticate::class, HandleHueCallba
 $r->addRoute('GET', '/admin/hue/devices', [Authenticate::class, GetHueDeviceList::class]);
 
 $r->addRoute('POST', '/admin/user/create', [BasicAuthenticate::class, CreateUser::class]);
-$r->addRoute('POST', '/admin/migratedb', [MigrateDatabase::class]);
+$r->addRoute('POST', '/admin/migratedb', [BasicAuthenticate::class, MigrateDatabase::class]);
 
 $r->addRoute('POST', '/events/sleep', [BasicAuthenticate::class, HandleSleepEvent::class]);

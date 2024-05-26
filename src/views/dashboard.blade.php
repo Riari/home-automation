@@ -24,7 +24,6 @@
                 </a>
             </li>
         </ul>
-        <form method="post" action="/admin/migratedb"><button type="submit">Migrate DB</button></form>
     </div>
 </div>
 
