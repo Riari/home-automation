@@ -4,18 +4,26 @@ namespace App\Phase\Sleep;
 
 use Adbar\Dot;
 use App\Model\AppToken;
-use Closure;
+use App\Model\Setting;
 use Phase\Config\Config;
 use Phase\Http\Phase\Phase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class HandleSleepEvent extends Phase
 {
     public function handle(Dot $state): Response
     {
+        $setting = Setting::find('enable_sleep_events');
+        if (!$setting || $setting->value == "0")
+        {
+            return new JsonResponse(
+                ['error' => 'Sleep events are disabled'],
+                Response::HTTP_SERVICE_UNAVAILABLE
+            );
+        }
+
         $payload = json_decode($this->request->getContent(), true);
 
         if ($payload['event'] != 'alarm_alert_start')
